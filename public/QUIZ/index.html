@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz de Automobilismo</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+
+    
+
+    <div class="logo">
+        <h1><a href="../home.html" class="logoempresa"><img width="150px" height="130px" src="assets/Captura_de_tela_2024-05-05_181840-removebg-preview.png" alt=""></a></h1>
+    </div>
+    
+    <div class="quiz-container">
+        <div class="question">
+            <h2 id="texto-pergunta"></h2>
+        </div>
+        <div class="opcoes" id="container-opcoes">
+            <!-- As opções de resposta serão adicionadas dinamicamente aqui -->
+        </div>
+        <div class="feedback" id="texto-feedback"></div>
+        <button id="btn-proxima" onclick="proximaPergunta()" disabled>Próxima Pergunta</button>
+    </div>
+
+
+
+    <script src="quiz.js"></script>
+</body>
+</html>
+<script>
+    function proximaPergunta(){
+        fetch("/usuarios/quiz",{
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json"
+            },
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {  
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                }) 
+            } else{
+
+            }
+        })
+    }
+</script>

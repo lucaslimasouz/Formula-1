@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="cadastro.css">
+    <link rel="stylesheet" href="../footer.css">
+    <script src="./js/sessao.js"></script>
+</head>
+<body>
+
+    <div class="Cadastro">
+        <div class="container">
+            <h1  class="logoempresa"> <a href="../home.html"><img width="150px" height="130px" src="assets/Captura_de_tela_2024-05-05_181840-removebg-preview.png" alt=""></a></h1>
+            <ul class="navbar">
+                
+                <a href="../telaLogin/login.html">
+                    <li><h3>Login</h3></li>
+                </a>
+                
+            </ul>
+        </div>
+
+        <div class="container2">
+            <h1>Cadastro</h1>
+            <div class="cadastrar">
+                <p>Nome:</p>
+                <input class="input" type="text" placeholder="Nome" id="input_nome">
+                <p>E-mail</p>
+                <input class="input" type="text" placeholder="E-mail" id="input_email">
+                <p>Senha:</p>
+                <input class="input" type="text" placeholder="Senha" id="input_senha">
+                <p>Confirmar Senha:</p>
+                <input class="input" type="password" placeholder="Confirmar Senha" id="input_confirmasenha">
+                
+
+                
+                <div class="botoes">
+                    <button class="btn" onclick="cadastrar()">Cadastrar</button>
+                   
+                </div>
+            </div>
+        </div>
+        <div id="div_mensagem"></div>
+        
+            <footer id="Footer">
+                <p>
+                    LK &copy; 2024 Todos os direitos reservados. 
+                </p>
+            </footer>
+        
+        
+</body>
+</html>
+
+<script>
+    function cadastrar() {
+  
+      //Recupere o valor da nova input pelo nome do id
+      // Agora vá para o método fetch logo abaixo
+      var nomeVar = input_nome.value;
+      var emailVar = input_email.value;
+      var senhaVar = input_senha.value;
+      var confirmacaoSenhaVar = input_confirmasenha.value;
+      if (
+        nomeVar == "" ||
+        emailVar == "" ||
+        senhaVar == "" ||
+        confirmacaoSenhaVar == "" 
+      ) {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML =
+          "(Mensagem de erro para todos os campos em branco)";
+  
+        
+        return false;
+      } else {
+    
+      
+  
+      // Enviando o valor da nova input
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: nomeVar,
+          emailServer: emailVar,
+          senhaServer: senhaVar
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+  
+          if (resposta.ok) {
+  
+            
+              div_mensagem.innerHTML="Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+  
+            setTimeout(() => {
+              window.location = "login.html";
+            }, "2000");
+  
+          
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+    
+        });
+
+    }
+  
+      
+    }
+  
+
+  
+    function sumirMensagem() {
+      cardErro.style.display = "none";
+    }
+  </script>

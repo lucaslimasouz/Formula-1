@@ -1,0 +1,142 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color:rgb(0, 0, 0);
+    background-image: url(assets/f1-sr-edition-art_1577653830.jpg.webp);
+    background-size: cover;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; /* Adapte o padding conforme necessário */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0); /* Cor de fundo do .container */
+    height: 90px;
+ /* Garante que o .container esteja acima dos outros elementos */
+}
+
+.container .logoempresa {
+    color: white;
+    font-size: 24px; /* Tamanho da fonte do logo */
+}
+
+.container .navbar {
+    list-style: none;
+    display: flex;
+    color: white;
+    align-items: center;
+}
+
+.container .navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 0 25px; /* Espaçamento entre os itens do menu */
+}
+
+.container .navbar a:hover {
+    color: red;
+}
+
+
+.navbar {
+    width: 300px;
+    height: 50px;
+    list-style: none;
+    display: flex;
+    justify-content: c;
+    align-items: center;
+}
+
+.navbar a{
+    color:white;
+    text-decoration: none;
+}
+
+.navbar a:hover{
+ color: red;
+}
+
+.Cadastro {
+    display: flex;
+    flex-direction: column;
+    height: 40%;
+    width: 60%;
+    justify-content: space-around;
+}
+
+
+.reset{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    height: 50px;
+}
+
+.container2{
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 0;
+    height: 90vh;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.input {
+    width: 100%;
+    height: 40px; /* Ajustando a altura do input */
+    border-radius: 25px;
+    border-color: black;
+    padding-left: 5%;
+}
+
+.Cadastro {
+    display: flex;
+    flex-direction: column;
+    height: 40%;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.cadastrar{
+    width: 400px;
+    height: 100vh;
+}
+
+.reset{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    color: rgb(0, 0, 0);
+}
+
+.btn {
+    height: 50px;
+    width: 200px;
+    cursor: pointer;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 16px;
+    background-color: #000;
+    border: 1px solid #000;
+    margin-top: 50px;   
+    justify-content: center;
+    margin-left: 110px;
+}
+
+.btn:hover{
+    transition: .2s;
+    background-color: #fff;
+    color: #000;
+}
+.botoes{
+    width: 100px;
+    height: 100px;
+}

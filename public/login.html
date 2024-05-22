@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../footer.css">
+
+    <script src="./js/sessao.js"></script>
+</head>
+<body>
+
+    <div class="inicioLogin">
+        <div class="container">
+            <h1  class="logoempresa"> <a href="../home.html"><img width="150px" height="130px" src="assets/Captura_de_tela_2024-05-05_181840-removebg-preview.png" alt=""></a></h1>
+            <ul class="navbar">
+                
+                <a href="../telacadastro/cadastro.html">
+                    <li>Cadastro</li>
+                </a>
+                
+                <li>|</li>
+                
+                <a href="#login">
+                    <li>Login</li>
+                </a>
+                
+            </ul>
+        </div>
+
+        <div class="container2">
+        <h1>Login</h1>
+            <div class="login">
+                <input class="input" type="text" placeholder="E-mail" id="input_email">
+                <input class="input" type="password" placeholder="Senha" id="input_senha">
+                <div class="reset">
+                    <div>
+                        <input class="caixa" type="checkbox"> <strong>Lembrar minha senha</strong>
+                    </div>
+                    <strong>Esquece sua senha?</strong>
+                </div>
+                <div class="botoes">
+                    <a href="../cadastro/telaCadastro.html"><button class="btn">Cadastro</button></a>
+                    <button class="btn2" onclick="entrar()">Login</button>
+                </div>
+            </div>
+        </div>
+        <div id="div_mensagem"></div>
+
+        <DIV class="final">
+            <footer id="Footer">
+                <p>
+                    LK &copy; 2024 Todos os direitos reservados. 
+                </p>
+            </footer>
+        </DIV>
+        
+</body>
+</html>
+<script>
+function entrar() {
+
+
+    var emailVar = input_email.value;
+    var senhaVar = input_senha.value;
+
+    if (emailVar == "" || senhaVar == "") {
+        
+        div_mensagem.innerHTML = "Mensagem de erro para todos os campos em branco";
+        finalizarAguardar();
+        return false;
+    }
+    else {
+       
+    }
+
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    fetch("/usuarios/autenticar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            emailServer: emailVar,
+            senhaServer: senhaVar
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                sessionStorage.EMAIL_USUARIO = json[0].emailVar;
+                sessionStorage.NOME_USUARIO = json[0].nomeVar;
+                sessionStorage.ID_USUARIO = json[0].id;
+
+                setTimeout(function () {
+                    window.location = "./QUIZ/index.html";
+                }, 1000); // apenas para exibir o loading
+
+            });
+
+        } else {
+
+            console.log("Houve um erro ao tentar realizar o login!");
+
+            resposta.text().then(texto => {
+                console.error(texto);
+                finalizarAguardar(texto);
+            });
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+
+    return false;
+}
+
+
+
+</script>
