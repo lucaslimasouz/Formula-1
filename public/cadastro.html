@@ -33,7 +33,15 @@
                 <input class="input" type="text" placeholder="Senha" id="input_senha">
                 <p>Confirmar Senha:</p>
                 <input class="input" type="password" placeholder="Confirmar Senha" id="input_confirmasenha">
-                
+                <p>Data de nascimento</p>
+                <input class="input" type="date" placeholder="Data nascimento" id="input_datanasc">
+                <p>genero:</p>
+                <select name="" id="input_genero">
+                    <option value="#"></option>
+                    <option value="masculino">masculino</option>
+                    <option value="feminino">feminino</option>
+                    <option value="outro">outro</option>
+                </select>
 
                 
                 <div class="botoes">
@@ -59,15 +67,19 @@
   
       //Recupere o valor da nova input pelo nome do id
       // Agora vá para o método fetch logo abaixo
-      var nomeVar = input_nome.value;
-      var emailVar = input_email.value;
-      var senhaVar = input_senha.value;
-      var confirmacaoSenhaVar = input_confirmasenha.value;
+      var nome = input_nome.value;
+      var email = input_email.value;
+      var senha = input_senha.value;
+      var confirmacaoSenha = input_confirmasenha.value;
+      var Datanasc = input_datanasc.value;
+      var genero = input_genero.value;
       if (
-        nomeVar == "" ||
-        emailVar == "" ||
-        senhaVar == "" ||
-        confirmacaoSenhaVar == "" 
+        nome== "" ||
+        email== "" ||
+        senha== "" ||
+        confirmacaoSenha== "" ||
+        Datanasc== "" ||
+        genero== ""
       ) {
         cardErro.style.display = "block";
         mensagem_erro.innerHTML =
@@ -88,9 +100,11 @@
         body: JSON.stringify({
           // crie um atributo que recebe o valor recuperado aqui
           // Agora vá para o arquivo routes/usuario.js
-          nomeServer: nomeVar,
-          emailServer: emailVar,
-          senhaServer: senhaVar
+          nomeServer: nome,
+          emailServer: email,
+          senhaServer: senha,
+          DatanascServer: Datanasc,
+          generoServer: genero
         }),
       })
         .then(function (resposta) {

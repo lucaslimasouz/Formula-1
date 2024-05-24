@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Votação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vote na sua opção favorita!</h1>
+        <button onclick="vote('opcao1')">Opção 1</button>
+        <button onclick="vote('opcao2')">Opção 2</button>
+        <div class="result">
+            <p>Opção 1: <span id="count1">0</span> votos</p>
+            <p>Opção 2: <span id="count2">0</span> votos</p>
+        </div>
+    </div>
+
+    <script>
+        let votosOpcao1 = 0;
+        let votosOpcao2 = 0;
+
+        function vote(opcao) {
+            if (opcao === 'opcao1') {
+                votosOpcao1++;
+                document.getElementById('count1').innerText = votosOpcao1;
+            } else if (opcao === 'opcao2') {
+                votosOpcao2++;
+                document.getElementById('count2').innerText = votosOpcao2;
+            }
+        }
+    </script>
+</body>
+</html>

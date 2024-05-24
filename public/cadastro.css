@@ -90,8 +90,8 @@ body {
 }
 
 .input {
-    width: 100%;
-    height: 40px; /* Ajustando a altura do input */
+    width: 80%;
+    height: 15px; /* Ajustando a altura do input */
     border-radius: 25px;
     border-color: black;
     padding-left: 5%;

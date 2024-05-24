@@ -42,6 +42,8 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
+    var datanasc = req.body.DatanascServer;
+    var genero = req.body.generoServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -50,14 +52,20 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
+    } else if (datanasc == undefined) {
+        res.status(400).send("Sua data de nascimento está undefined!");
+    } else if (genero == undefined) {
+        res.status(400).send("Seu genero está undefined!");
     } 
      else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha)
+        usuarioModel.cadastrar(nome, email, senha, datanasc, genero)
+
+        
             .then(
                 function (resultado) {
-                    res.json(resultado);
+                    res.status(200).json(resultado);
                 }
             ).catch(
                 function (erro) {
@@ -72,13 +80,9 @@ function cadastrar(req, res) {
     }
 }
 
-function quiz (){
-    usuarioModel.quiz().then(function(resposta){
-        res.status(203).json(resposta)
-    })
-}
+
+
 module.exports = {
     autenticar,
-    cadastrar,
-    quiz
+    cadastrar
 }

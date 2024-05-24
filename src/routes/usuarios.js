@@ -12,10 +12,7 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
-router.get("/quiz", function (req, res){
-    usuarioController.quiz(req, res)
 
-})
 
 
 
