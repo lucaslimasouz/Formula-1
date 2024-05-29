@@ -12,6 +12,25 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.post("/confirmarVoto", function (req, res) {
+    usuarioController.confirmarVoto(req, res);
+});
+
+router.post("/votos", function (req, res) {
+    usuarioController.buscarVotos(req, res);
+});
+
+
+router.get("/idadepublico", function (req, res){
+    usuarioController.idadepublico(req, res);
+});
+
+
+router.get("/generopublico", function (req, res){
+    usuarioController.generopublico(req, res);
+});
+
+
 
 
 

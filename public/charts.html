@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos ChartJs</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<style>
+  
+  .container{
+      width: 60%;
+      height: 60%;
+      margin: 40px auto;
+      
+    }
+</style>
+<body>
+    <div class="container">
+        <!-- Grafico de linha fica dentro dessa tag -->
+        <canvas id="Graficopizza"></canvas>
+    </div>
+    <div class="container">
+        <!-- Grafico de barra fica dentro dessa tag -->
+        <canvas id="GraficoBarra"></canvas>
+    </div>
+
+    <div class="container">
+        <!-- Grafico de barra fica dentro dessa tag -->
+        <canvas id="GraficoBarra"></canvas>
+    </div>
+</body>
+
+<script>
+
+
+
+fetch("/usuarios/idadepublico", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+            resposta.json().then((data) => {
+                console.log("data: ", data);
+
+                const idadeusuarios = [0, 0, 0, 0, 0];
+
+                for (var i = 0; i < data.length; i++) {
+                    var idade = data[i];
+                    if ((2024 - idade.anonascimento) <= 18) {
+                        idadeusuarios[0]++;
+                    } else if ((2024 - idade.anonascimento) <= 24) {
+                        idadeusuarios[1]++;
+                    } else if ((2024 - idade.anonascimento) <= 29) {
+                        idadeusuarios[2]++;
+                    } else if ((2024 - idade.anonascimento) <= 34) {
+                        idadeusuarios[3]++;
+                    } else {
+                        idadeusuarios[4]++;
+                    }
+                }
+
+                var dadosporcentagem = [];
+                idadeusuarios.map((i) => {
+                    dadosporcentagem.push(((i / data.length) * 100).toFixed(2));
+                });
+
+                var grafico = document.getElementById('Graficopizza');
+                grafico.width = '100%';
+                var lineChart = new Chart(grafico, {
+                    type: 'pie',
+                    data: {
+                        labels: ['menores de 18 anos', 'entre 18 a 24 anos', 'entre 25 e 29 anos ', 'entre 30 a 34 anos', 'maiores de 34 anos'],
+                        datasets: [{
+                            label: 'Porcentagem de presença',
+                            data: dadosporcentagem,
+                            borderColor: "#FFFF",
+                            backgroundColor: [
+                                "#B0E0E6", "#FF4500", "#2E8B57", "#FF0000", "#FFFF00"
+                            ]
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+        });
+
+
+
+
+
+        fetch("/usuarios/generopublico", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+            resposta.json().then((data) => {
+                console.log("data: ", data);
+
+                const generousuarios = { masculino: 0, feminino: 0, outros: 0 };
+
+                for (var i = 0; i < data.length; i++) {
+                    var genero = data[i].genero;
+                    if (genero === "masculino") {
+                        generousuarios.masculino++;
+                    } else if (genero === "feminino") {
+                        generousuarios.feminino++;
+                    } else {
+                        generousuarios.outros++;
+                    }
+                }
+
+                var dadosporcentagemGenero = [
+                    ((generousuarios.masculino / data.length) * 100).toFixed(2),
+                    ((generousuarios.feminino / data.length) * 100).toFixed(2),
+                    ((generousuarios.outros / data.length) * 100).toFixed(2)
+                ];
+
+                var grafico2 = document.getElementById('GraficoBarra');
+                var barChart = new Chart(grafico2, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Masculino', 'Feminino', 'Outros'],
+                        datasets: [{
+                            label: 'Porcentagem de Gênero',
+                            data: dadosporcentagemGenero,
+                            borderColor: ["#36A2EB", "#FF6384", "#FFCE56"],
+                            backgroundColor: ["#36A2EB", "#FF6384", "#FFCE56"],
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+        })
+
+        
+
+
+       
+</script>
+
+</html>

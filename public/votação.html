@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Votação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 20px auto;
+            width: 80%;
+        }
+
+        .opcoes-votacao {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .opcao-voto {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 10px;
+            width: 180px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .opcao-voto:hover {
+            transform: scale(1.05);
+        }
+
+        .opcao-voto img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .opcao-voto p {
+            margin: 10px 0;
+        }
+
+        .botao-confirmar {
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .botao-confirmar:hover {
+            background-color: #0056b3;
+        }
+
+        .botao-confirmar:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vote em Sua equipe favorita</h1>
+        <form id="form-votacao">
+            <div id="opcoes-votacao" class="opcoes-votacao">
+                <div class="opcao-voto">
+                    <img height="140px" width="100px" src="assets/Ferrari.webp" alt="Scuderia Ferrari HP">
+                    <p> Team <br>
+                      Scuderia Ferrari </p>
+                    <input type="radio" name="voto" value="Ferrari">
+                </div>
+                <div class="opcao-voto">
+                    <img  height="140px" width="100px" src="assets/aston martin.jpg" alt="Opção 2">
+                    <p> Team <br>
+                        Aston Martin</p>
+                    <input type="radio" name="voto" value="Aston Martin">
+                </div>
+                <div class="opcao-voto">
+                    <img height="140px" width="100px" src="assets/mclaren.webp" alt="Opção 3">
+                    <p> Team <br>
+                        McLaren</p>
+                    <input type="radio" name="voto" value=" McLaren">
+                </div>
+                <div class="opcao-voto">
+                    <img height="140px" width="100px" src="assets/mercedes.webp" alt="Opção 4">
+                    <p> Team <br>
+                    Mercedes-AMG</p>
+                    <input type="radio" name="voto" value="Mercedes-AMG">
+                </div>
+                <div class="opcao-voto">
+                    <img height="140px" width="100px" src="assets/RB F1.jpg" alt="Opção 5">
+                    <p> Team <br>
+                        RB F1</p>
+                    <input type="radio" name="voto" value="RB F1 Team">
+                </div>
+                <div class="opcao-voto">
+                    <img height="140px" width="100px" src="assets/redbull.jpg" alt="Opção 6">
+                    <p> Team <br>
+                    Red Bull Racing</p>
+                    <input type="radio" name="voto" value="Red Bull Racing">
+                </div>
+                <div class="opcao-voto">
+                    <img height="140px" width="100px" src="assets/williams.webp" alt="Opção 7">
+                    <p> Team <br>
+                    Williams Racing</p>
+                    <input type="radio" name="voto" value="Williams Racing">
+                </div>
+                <div class="opcao-voto">
+                    <img height="140px" width="100px" src="assets/alpine.jpg" alt="Opção 8">
+                    <p> Team <br>
+                    Alpine F1 </p>
+                    <input type="radio" name="voto" value="Alpine F1 Team">
+                </div>
+                <div class="opcao-voto">
+                    <img height="140px" width="100px" src="assets/hassf1.avif" alt="Opção 9">
+                    <p>Team <br>
+                     Hass F1</p>
+                    <input type="radio" name="voto" value="Haas F1 Team">
+                </div>
+                <div class="opcao-voto">
+                    <img height="100px" width="100px" src="assets/kick sauber.jpg" alt="Opção 10">
+                    <p>Opção 10</p>
+                    <input type="radio" name="voto" value="F1 Team Kick Sauber">
+                </div>
+            </div>
+            <button type="button" class="botao-confirmar" onclick="confirmarVoto()">Confirmar Voto</button>
+        </form>
+    </div>
+    <div id="div_mensagem"></div>
+
+    <script>
+        function confirmarVoto() {
+            var form = document.getElementById('form-votacao');
+            var voto = form.voto.value;
+            if (voto) {
+
+                fetch("/usuarios/confirmarVoto", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        voto: voto
+                    }),
+                })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+                        alert("Voto realizado com sucesso! Redirecionando...");
+                        setTimeout(() => {
+                            window.location.href = "charts.html";
+                        }, 1000);
+                    } else {
+                        div_mensagem.innerHTML = "Houve um erro ao tentar realizar o voto!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+            } else {
+                alert('Por favor, selecione uma opção antes de confirmar.');
+            }
+        }
+    </script>
+</body>
+</html>

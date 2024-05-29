@@ -98,10 +98,10 @@ function entrar() {
                 console.log(JSON.stringify(json));
                 sessionStorage.EMAIL_USUARIO = json[0].emailVar;
                 sessionStorage.NOME_USUARIO = json[0].nomeVar;
-                sessionStorage.ID_USUARIO = json[0].id;
+                sessionStorage.ID_USUARIO = json[0].idVar;
 
                 setTimeout(function () {
-                    window.location = "./QUIZ/index.html";
+                    window.location = "charts.html";
                 }, 1000); // apenas para exibir o loading
 
             });
