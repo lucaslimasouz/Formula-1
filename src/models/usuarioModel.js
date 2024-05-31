@@ -33,7 +33,7 @@ function confirmarVoto(voto) {
 
 function buscarVotos() {
     var instrucao = `
-        SELECT opcao, COUNT(*) as quantidade FROM votos GROUP BY opcao;
+        SELECT opcao as 'opcao' from votos;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

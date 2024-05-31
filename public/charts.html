@@ -10,28 +10,101 @@
 
 </head>
 <style>
+    body{
+        background-color: #fff;
+        background-image: url("css/assets/1477285-download-bmw-wallpaper-1920x1080-1920x1080.jpg"); /* Substitua pelo URL da sua imagem de fundo */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
   
   .container{
-      width: 60%;
-      height: 60%;
-      margin: 40px auto;
-      
+    width: 60vh;
+    height: 60vh;
+    background-color: #fff;
+    color: #fff;
+    display: flex;
+    background-size: cover;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-around;
     }
+
+
+    .grafico1{
+        display: flex;
+    justify-content: center;
+    height: 250px;
+    width: 250px;
+    border-radius: 40px;
+    border-color: #000;
+    border-style: inset;
+    transition: 0.5;
+    
+
+    }
+
+    
+    .grafico2{
+        display: flex;
+    justify-content: center;
+    height: 250px;
+    width: 250px;
+    border-radius: 40px;
+    border-color: #000;
+    border-style: inset;
+    transition: 0.5;
+    }
+
+    .grafico3{
+        display: flex;
+    justify-content: center;
+    height: 250px;
+    width: 250px;
+    border-radius: 40px;
+    border-color: #000;
+    border-style: inset;
+    transition: 0.5;
+    }
+
+    .btn-logout {
+  margin-top : 160px;
+  padding: 0;
+  width: 20%;
+  background-color: #32b9cd;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px 15px;
+  margin-bottom: 100px;
+  cursor: pointer;  
+}
+
+.btn-logout a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 45px;
+    
+}
 </style>
 <body>
-    <div class="container">
-        <!-- Grafico de linha fica dentro dessa tag -->
-        <canvas id="Graficopizza"></canvas>
+    
+    <div class="Graficos">
+        <div class="container">    
+        <canvas  class="grafico1" id="Graficopizza"></canvas>
+        <canvas class="grafico2" id="GraficoBarra"></canvas>
+        <canvas class="grafico3" id="Grafico"></canvas>
     </div>
-    <div class="container">
-        <!-- Grafico de barra fica dentro dessa tag -->
-        <canvas id="GraficoBarra"></canvas>
     </div>
 
-    <div class="container">
-        <!-- Grafico de barra fica dentro dessa tag -->
-        <canvas id="GraficoBarra"></canvas>
+
+    <div class="btn-logout">
+        
+        <H3><a href="dashboard.html">SAIR</a></H3>
     </div>
+    
 </body>
 
 <script>
@@ -80,7 +153,7 @@ fetch("/usuarios/idadepublico", {
                         datasets: [{
                             label: 'Porcentagem de presença',
                             data: dadosporcentagem,
-                            borderColor: "#FFFF",
+                            borderColor: "#000",
                             backgroundColor: [
                                 "#B0E0E6", "#FF4500", "#2E8B57", "#FF0000", "#FFFF00"
                             ]
@@ -139,7 +212,7 @@ fetch("/usuarios/idadepublico", {
                         datasets: [{
                             label: 'Porcentagem de Gênero',
                             data: dadosporcentagemGenero,
-                            borderColor: ["#36A2EB", "#FF6384", "#FFCE56"],
+                            borderColor: ["#000"],
                             backgroundColor: ["#36A2EB", "#FF6384", "#FFCE56"],
                         }]
                     },
@@ -153,6 +226,81 @@ fetch("/usuarios/idadepublico", {
                 });
             });
         })
+
+
+
+        fetch ("/usuarios/votos", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"             
+        },
+    })
+
+    .then(function (resposta) {
+            console.log("resposta: ", resposta);
+            resposta.json().then((data) => {
+                console.log("data: ", data);
+
+                const equipes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+                for(var i = 0; i < data.length; i++){
+                    let x = data[i];
+                    if(x.opcao == 'Ferrari'){
+                        equipes[0]++;
+                    }else if (x.opcao == 'Aston Martin'){
+                        equipes[1]++;
+                    } else if (x.opcao == ' McLaren' ){
+                        equipes[2]++;
+                    } else if(x.opcao == 'Mercedes-AMG'){
+                        equipes[3]++;
+                    } else if (x.opcao == 'RB F1 Team'){
+                        equipes[4]++;
+                    }else if (x.opcao == 'Red Bull Racing'){
+                        equipes[5]++;
+                    }else if (x.opcao == 'Williams Racing'){
+                        equipes[6]++;
+                    }else if (x.opcao == 'Alpine F1 Team'){
+                        equipes[7]++;
+                    }else if (x.opcao == 'Haas F1 Team'){
+                        equipes[8]++;
+                    }else if (x.opcao == 'F1 Team Kick Sauber'){
+                        equipes[9]++;
+                    }
+                }
+
+                var dadosporcentagem = [];
+                equipes.map((i) => {
+                    dadosporcentagem.push(((i / equipes.length) * 100).toFixed(2));
+                });
+                console.log(dadosporcentagem)
+
+                var grafico = document.getElementById('Grafico');
+                grafico.width = '100%';
+                var lineChart = new Chart(grafico, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Ferrari', 'Aston Martin', 'McLaren', 'Mercedes-AMG', 'RB F1 Team', 'Red Bull Racing', 'Williams Racing',
+                        'Alpine F1 Team', 'Haas F1 Team', 'F1 Team Kick Sauber'],
+                        datasets: [{
+                            label: 'Votos',
+                            data: dadosporcentagem,
+                            borderColor: "#000",
+                            backgroundColor: [
+                            "#FF0000","#2E8B57", "#FF4500" , "#000", "#191970", "#FFD700", "#20B2AA", "#F08080", "#4F4F4F", "#008000"
+                            ]
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+        });
+
 
         
 

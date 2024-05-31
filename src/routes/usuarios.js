@@ -16,7 +16,7 @@ router.post("/confirmarVoto", function (req, res) {
     usuarioController.confirmarVoto(req, res);
 });
 
-router.post("/votos", function (req, res) {
+router.get("/votos", function (req, res) {
     usuarioController.buscarVotos(req, res);
 });
 

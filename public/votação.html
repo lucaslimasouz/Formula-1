@@ -75,62 +75,63 @@
         <form id="form-votacao">
             <div id="opcoes-votacao" class="opcoes-votacao">
                 <div class="opcao-voto">
-                    <img height="140px" width="100px" src="assets/Ferrari.webp" alt="Scuderia Ferrari HP">
+                    <img height="140px" width="100px" src="./css/assets/Ferrari.webp" alt="Scuderia Ferrari HP">
                     <p> Team <br>
                       Scuderia Ferrari </p>
                     <input type="radio" name="voto" value="Ferrari">
                 </div>
                 <div class="opcao-voto">
-                    <img  height="140px" width="100px" src="assets/aston martin.jpg" alt="Opção 2">
+                    <img  height="140px" width="100px" src="./css/assets/aston martin.jpg" alt="Opção 2">
                     <p> Team <br>
                         Aston Martin</p>
                     <input type="radio" name="voto" value="Aston Martin">
                 </div>
                 <div class="opcao-voto">
-                    <img height="140px" width="100px" src="assets/mclaren.webp" alt="Opção 3">
+                    <img height="140px" width="100px" src="./css/assets/mclaren.webp" alt="Opção 3">
                     <p> Team <br>
                         McLaren</p>
                     <input type="radio" name="voto" value=" McLaren">
                 </div>
                 <div class="opcao-voto">
-                    <img height="140px" width="100px" src="assets/mercedes.webp" alt="Opção 4">
+                    <img height="140px" width="100px" src="./css/assets/mercedes.webp" alt="Opção 4">
                     <p> Team <br>
                     Mercedes-AMG</p>
                     <input type="radio" name="voto" value="Mercedes-AMG">
                 </div>
                 <div class="opcao-voto">
-                    <img height="140px" width="100px" src="assets/RB F1.jpg" alt="Opção 5">
+                    <img height="140px" width="100px" src="./css/assets/RB F1.jpg" alt="Opção 5">
                     <p> Team <br>
                         RB F1</p>
                     <input type="radio" name="voto" value="RB F1 Team">
                 </div>
                 <div class="opcao-voto">
-                    <img height="140px" width="100px" src="assets/redbull.jpg" alt="Opção 6">
+                    <img height="140px" width="100px" src="./css/assets/redbull.jpg" alt="Opção 6">
                     <p> Team <br>
                     Red Bull Racing</p>
                     <input type="radio" name="voto" value="Red Bull Racing">
                 </div>
                 <div class="opcao-voto">
-                    <img height="140px" width="100px" src="assets/williams.webp" alt="Opção 7">
+                    <img height="140px" width="100px" src="./css/assets/williams.webp" alt="Opção 7">
                     <p> Team <br>
                     Williams Racing</p>
-                    <input type="radio" name="voto" value="Williams Racing">
+                    <input type="radio" name="voto" value="./css/Williams Racing">
                 </div>
                 <div class="opcao-voto">
-                    <img height="140px" width="100px" src="assets/alpine.jpg" alt="Opção 8">
+                    <img height="140px" width="100px" src="./css/assets/alpine.jpg" alt="Opção 8">
                     <p> Team <br>
                     Alpine F1 </p>
                     <input type="radio" name="voto" value="Alpine F1 Team">
                 </div>
                 <div class="opcao-voto">
-                    <img height="140px" width="100px" src="assets/hassf1.avif" alt="Opção 9">
+                    <img height="140px" width="100px" src="./css/assets/hassf1.avif" alt="Opção 9">
                     <p>Team <br>
                      Hass F1</p>
                     <input type="radio" name="voto" value="Haas F1 Team">
                 </div>
                 <div class="opcao-voto">
-                    <img height="100px" width="100px" src="assets/kick sauber.jpg" alt="Opção 10">
-                    <p>Opção 10</p>
+                    <img height="100px" width="100px" src="./css/assets/kick sauber.jpg" alt="Opção 10">
+                    <p>Team <br>
+                      F1 Kick Sauber</p>
                     <input type="radio" name="voto" value="F1 Team Kick Sauber">
                 </div>
             </div>
@@ -141,6 +142,10 @@
 
     <script>
         function confirmarVoto() {
+
+            var usuarioId = sessionStorage.getItem("ID_USUARIO");
+
+            
             var form = document.getElementById('form-votacao');
             var voto = form.voto.value;
             if (voto) {
@@ -151,7 +156,10 @@
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        voto: voto
+                        voto: voto,
+                        
+
+                        
                     }),
                 })
                 .then(function (resposta) {
@@ -160,7 +168,7 @@
                     if (resposta.ok) {
                         alert("Voto realizado com sucesso! Redirecionando...");
                         setTimeout(() => {
-                            window.location.href = "charts.html";
+                            window.location.href = "dashboard.html";
                         }, 1000);
                     } else {
                         div_mensagem.innerHTML = "Houve um erro ao tentar realizar o voto!";

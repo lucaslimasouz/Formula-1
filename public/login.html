@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="../footer.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/footer.css">
 
     <script src="./js/sessao.js"></script>
 </head>
@@ -13,10 +13,10 @@
 
     <div class="inicioLogin">
         <div class="container">
-            <h1  class="logoempresa"> <a href="../home.html"><img width="150px" height="130px" src="assets/Captura_de_tela_2024-05-05_181840-removebg-preview.png" alt=""></a></h1>
+            <h1  class="logoempresa"> <a href="index.html"><img width="150px" height="130px" src="./css/assets/Captura_de_tela_2024-05-05_181840-removebg-preview.png" alt=""></a></h1>
             <ul class="navbar">
                 
-                <a href="../telacadastro/cadastro.html">
+                <a href="cadastro.html">
                     <li>Cadastro</li>
                 </a>
                 
@@ -35,10 +35,7 @@
                 <input class="input" type="text" placeholder="E-mail" id="input_email">
                 <input class="input" type="password" placeholder="Senha" id="input_senha">
                 <div class="reset">
-                    <div>
-                        <input class="caixa" type="checkbox"> <strong>Lembrar minha senha</strong>
-                    </div>
-                    <strong>Esquece sua senha?</strong>
+                    
                 </div>
                 <div class="botoes">
                     <a href="../cadastro/telaCadastro.html"><button class="btn">Cadastro</button></a>
@@ -67,9 +64,13 @@ function entrar() {
 
     if (emailVar == "" || senhaVar == "") {
         
-        div_mensagem.innerHTML = "Mensagem de erro para todos os campos em branco";
+        alert('preencha todos os campos em branco');
         finalizarAguardar();
         return false;
+    }
+
+    else if(emailVar.indexOf("@") == -1 || emailVar.indexOf(".") == -1|| senhaVar.length < 5 ){
+        alert("verifique corretamente o email/senha")
     }
     else {
        
@@ -101,7 +102,7 @@ function entrar() {
                 sessionStorage.ID_USUARIO = json[0].idVar;
 
                 setTimeout(function () {
-                    window.location = "charts.html";
+                    window.location = "dashboard.html";
                 }, 1000); // apenas para exibir o loading
 
             });

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Lovers | Dashboards</title>
+
+    
+    <link rel="stylesheet" href="./css/dashboards.css">
+    <link rel="stylesheet" href="./../css/estilo.css" />
+    <link rel="stylesheet" href="styles.css">
+    <script src="../js/sessao.js"></script>
+    <script src="./../js/alerta.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- scripts do Chart.js - 2022-1 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!--FONT AWESOME-->
+    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+</head>
+
+<!-- <body onload=" atualizarFeed()"> -->
+
+<body>
+
+    <div class="janela">
+        <div class="header-left">
+
+            <h1><a href="index.html" class="logoempresa"><img width="120px" height="100px" src="./css/assets/Captura_de_tela_2024-05-05_181840-removebg-preview.png" alt=""></a></h1>
+            <h1>Auto Lovers</h1>
+
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="QUIZ/teste.html">
+                    <h3>Quiz</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav">
+
+                <a href="votação.html">
+                    <h3>Escolha sua equipe </h3>
+                </a>
+
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="charts.html">
+                    <h3>Graficos</h3>
+                </a>
+            </div>
+
+
+            
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+            
+        </div>
+        
+        <div class="logo">
+            <h1><a href="../home.html" class="logoempresa"><img width="150px" height="130px" src="assets/Captura_de_tela_2024-05-05_181840-removebg-preview.png" alt=""></a></h1>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question">
+                <h2 id="texto-pergunta"></h2>
+            </div>
+            <div class="opcoes" id="container-opcoes">
+                <!-- As opções de resposta serão adicionadas dinamicamente aqui -->
+            </div>
+            <div class="feedback" id="texto-feedback"></div>
+            <button id="btn-proxima" onclick="proximaPergunta()" disabled>Próxima Pergunta</button>
+
+</body>
+
+</html>
+
+
+<script>
+    // Dados do Quiz (Perguntas, Opções e Respostas)
+var dadosQuiz = [
+    {
+        pergunta: "Quem é considerado o rei do automobilismo?",
+        opcoes: ["Ayrton Senna", "Lewis Hamilton", "Nelson Piquet", "Sebastian Vettel"],
+        resposta: "Ayrton Senna"
+    },
+    {
+        pergunta: "Em que ano Max Verstappen estreou na Fórmula 1?",
+        opcoes: ["2015", "2016", "2017", "2018"],
+        resposta: "2015"
+    },
+    {
+        pergunta: "Quantos títulos tem o maior vencedor da história da F1??",
+        opcoes: ["7 títulos", "5 títulos", "10 títulos", "9 títulos"],
+        resposta: "7 títulos"
+    },
+    {
+        pergunta: "Quem é o piloto com mais vitórias em uma única temporada na Fórmula 1?",
+        opcoes: ["Max Versapen", "Airton Senna", "Shumacher", "hamilton"],
+        resposta: "Max Versapen"
+    },
+    {
+        pergunta: "Quem ganhou o campeonato mundial de 1992?",
+        opcoes: ["Airton Senna", "Michael Schumacher", "alain prost", "nigel mansell"],
+        resposta: "nigel mansell"
+    },
+    {
+        pergunta: "Qual eram os pilotos da Ferrari em 2018?",
+        opcoes: ["Leclerc / Raikkonen", "Leclerc / Alonso", "Vettel / Raikkonen", "Leclerb / Vettel"],
+        resposta: "Vettel / Raikkonen"
+    },
+    {
+        pergunta: "Quem ganhou o primeiro campeonato mundial de Fórmula 1 (1950)??",
+        opcoes: ["Nino Farina", "Alberto Ascari", "Mike Hawthorn", "Juan Manuel Fangio"],
+        resposta: "Nino Farina"
+    },
+    {
+        pergunta: "Em que ano Lewis Hamilton estreou na Fórmula 1?",
+        opcoes: ["2007", "2005", "2008", "2006"],
+        resposta: "2007"
+    },
+    {
+        pergunta: "Lewis é:",
+        opcoes: ["Britanico", "Canadense", "Estadunidense", "Italiano"],
+        resposta: "Britanico"
+    },
+    {
+        pergunta: "Qual é o piloto brasileiro que perdeu o título para Lewis Hamilton, na última volta, do GP do Brasil de 2008??",
+        opcoes: ["Felipe Massa", "Nelson Piquet", "Ayrton Senna", "José Carlos Pace"],
+        resposta: "Felipe Massa"
+    },// Adicione mais perguntas conforme necessário
+];
+
+var perguntaAtual = 0; // Índice da pergunta atual
+var pontuacao = 0; // Pontuação inicial do quiz
+
+// Função para carregar a próxima pergunta
+    function carregarPergunta() {
+        var Pergunta = document.getElementById('texto-pergunta');
+        var opcoes = document.getElementById('container-opcoes');
+        var dadosPerguntaAtual = dadosQuiz[perguntaAtual];
+
+        // Exibe a pergunta atual
+        Pergunta.innerHTML = dadosPerguntaAtual.pergunta;
+        opcoes.innerHTML = ''; // Limpa as opções
+
+        // Adiciona botões para cada opção de resposta
+        dadosPerguntaAtual.opcoes.forEach(opcao => {
+            var botao = document.createElement('button');
+            botao.textContent = opcao;
+            botao.classList.add('opcao-btn');
+            botao.addEventListener('click', () => verificarResposta(opcao));
+            opcoes.appendChild(botao);
+        });
+
+        // Desabilita o botão "Próxima Pergunta" até que uma resposta seja selecionada
+        document.getElementById('btn-proxima').disabled = true;
+    }
+
+    // Função para verificar a resposta selecionada pelo usuário
+    function verificarResposta(respostaUsuario) {
+        var dadosPerguntaAtual = dadosQuiz[perguntaAtual];
+        var elementoTextoFeedback = document.getElementById('texto-feedback');
+
+        // Verifica se a resposta selecionada está correta
+        if (respostaUsuario === dadosPerguntaAtual.resposta) {
+            pontuacao++; // Incrementa a pontuação se a resposta estiver correta
+            elementoTextoFeedback.innerHTML = "Resposta correta!";
+            elementoTextoFeedback.style.color = "green";
+        } else {
+            elementoTextoFeedback.innerHTML = "Resposta incorreta.";
+            elementoTextoFeedback.style.color = "red";
+        }
+
+        // Habilita o botão "Próxima Pergunta" após responder
+        document.getElementById('btn-proxima').disabled = false;
+
+        // Desabilita todos os botões de opção após responder
+        var botoesOpcao = document.querySelectorAll('.opcao-btn');
+        botoesOpcao.forEach(botao => {
+            botao.disabled = true;
+        });
+    }
+
+    // Função para avançar para a próxima pergunta
+    function proximaPergunta() {
+        perguntaAtual++; // Avança para a próxima pergunta
+
+        // Verifica se há mais perguntas restantes
+        if (perguntaAtual < dadosQuiz.length) {
+            carregarPergunta(); // Carrega a próxima pergunta
+        } else {
+            // Exibe a pontuação final quando todas as perguntas forem respondidas
+            var Pergunta = document.getElementById('texto-pergunta');
+            Pergunta.innerHTML = `Você acertou ${pontuacao} de ${dadosQuiz.length} perguntas.`;
+
+            // Limpa as opções e o feedback
+            document.getElementById('container-opcoes').innerHTML = '';
+            document.getElementById('texto-feedback').innerHTML = '';
+
+            // Esconde o botão "Próxima Pergunta" no final do quiz
+            document.getElementById('btn-proxima').style.display = 'none';
+        }
+    }
+
+    // Carrega a primeira pergunta ao carregar a página
+    carregarPergunta();
+
+
+
+    for(var i = 0; i < perguntas.length; i++){
+
+        dadosQuiz[i].pergunta = perguntas[i].pergunta;// Quem é o piloto com mais vitórias em uma única temporada na Fórmula 1?
+        dadosQuiz[i].resposta = perguntas[i].resposta;
+    }
+</script>
+

@@ -107,6 +107,7 @@
         usuarioModel.buscarVotos()
             .then(
                 function (resultado) {
+                    console.log(resultado)
                     res.status(200).json(resultado);
                 }
             ).catch(
