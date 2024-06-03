@@ -11,7 +11,6 @@
     
     <link rel="stylesheet" href="./css/dashboards.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
-    <link rel="stylesheet" href="styles.css">
     <script src="../js/sessao.js"></script>
     <script src="./../js/alerta.js"></script>
 
@@ -25,9 +24,95 @@
 
     <!--FONT AWESOME-->
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon " href="assets/formula-1 (1).png">
 </head>
 
-<!-- <body onload=" atualizarFeed()"> -->
+
+<style>
+    body{
+        background-image: url(assets/Ferrari_Las_Vegas_GP_livery_d97d8d5a88.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        width: 500px;
+        margin: 250px auto;
+    }
+    
+
+  
+  .container{
+    width: 50vh;
+    height: 50vh;
+    background-color: black;
+    color: #fff;
+    display: flex;
+    background-size: cover;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-around;
+    }
+
+
+    .grafico1{
+        display: flex;
+    justify-content: center;
+    height: 250px;
+    width: 250px;
+    border-radius: 40px;
+    border-color: #000;
+    border-style: inset;
+    transition: 0.5;
+    
+
+    }
+
+    
+    .grafico2{
+        display: flex;
+    justify-content: center;
+    height: 250px;
+    width: 250px;
+    border-radius: 40px;
+    border-color: #ffffff;
+    border-style: inset;
+    transition: 0.5;
+    }
+
+    .grafico3{
+        display: flex;
+    justify-content: center;
+    height: 250px;
+    width: 250px;
+    border-radius: 40px;
+    border-color: #000;
+    border-style: inset;
+    transition: 0.5;
+    }
+
+    .btn-logout {
+  margin-top : 160px;
+  padding: 0;
+  width: 20%;
+  background-color: #32b9cd;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px 15px;
+  margin-bottom: 100px;
+  cursor: pointer;  
+}
+
+.btn-logout a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0 45px;
+    
+}
+</style>
+
+
+
 
 <body>
 
@@ -42,18 +127,12 @@
             </div>
 
             <div class="btn-nav-white">
-                <a href="QUIZ/teste.html">
-                    <h3>Quiz</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav">
-
                 <a href="votação.html">
-                    <h3>Escolha sua equipe </h3>
+                    <h3>Escolha sua equipe</h3>
                 </a>
-
             </div>
+
+           
 
             <div class="btn-nav-white">
                 <a href="charts.html">
@@ -68,162 +147,119 @@
             </div>
             
         </div>
-        
-        <div class="logo">
-            <h1><a href="../home.html" class="logoempresa"><img width="150px" height="130px" src="assets/Captura_de_tela_2024-05-05_181840-removebg-preview.png" alt=""></a></h1>
-        </div>
-        
-        <div class="quiz-container">
-            <div class="question">
-                <h2 id="texto-pergunta"></h2>
-            </div>
-            <div class="opcoes" id="container-opcoes">
-                <!-- As opções de resposta serão adicionadas dinamicamente aqui -->
-            </div>
-            <div class="feedback" id="texto-feedback"></div>
-            <button id="btn-proxima" onclick="proximaPergunta()" disabled>Próxima Pergunta</button>
 
+        <div class="Graficos">
+            <div class="texto">
+                <h1>A Fórmula 1 é para Todos: Vamos Aumentar a Presença Feminina nas Pistas!
+Olá, fãs de Fórmula 1!</h1>
+    
+                <h3>
+Sabemos que a adrenalina das corridas, o som dos motores rugindo e a habilidade dos pilotos ao volante são apaixonantes. A Fórmula 1 é um esporte que conquista corações ao redor do mundo, unindo pessoas de todas as idades e origens. No entanto, há um público que ainda pode ser mais incluído nesse universo incrível: as mulheres.
+
+A presença feminina na Fórmula 1 está crescendo, mas ainda há muito espaço para que mais mulheres se sintam bem-vindas e representadas nesse esporte. Isso não significa apenas ver mais mulheres nas arquibancadas, mas também nas equipes, nas pistas e até mesmo nos comandos dos carros. Aqui estão algumas razões pelas quais devemos incentivar mais mulheres a se apaixonarem pela Fórmula 1:
+
+Diversidade Enriquecedora: A diversidade de gênero traz novas perspectivas e ideias, enriquecendo o esporte como um todo. Cada pessoa traz sua própria experiência e paixão, o que pode levar a inovações e melhorias em todos os aspectos da Fórmula 1.
+
+Role Models: Mais mulheres envolvidas na Fórmula 1 inspiram novas gerações de garotas a sonharem alto. Ter exemplos de mulheres bem-sucedidas nas pistas, nas equipes técnicas e na administração mostra que esse esporte é para todos.
+
+Comunidade Inclusiva: Criar um ambiente acolhedor e inclusivo é essencial para atrair mais fãs. A Fórmula 1 deve ser um espaço onde todos, independentemente de gênero, se sintam parte de uma grande família global de entusiastas do automobilismo.
+
+Talento e Paixão: Existem muitas mulheres talentosas e apaixonadas pelo automobilismo que podem contribuir enormemente para a Fórmula 1. Seja como pilotos, engenheiras, jornalistas ou fãs fervorosas, a presença feminina só tem a agregar ao esporte.
+
+Para os fãs de Fórmula 1, aqui estão algumas maneiras de ajudar a aumentar a presença feminina no esporte:
+
+Convide Amigas e Familiares: Leve suas amigas, irmãs, mães e parceiras para assistir a uma corrida com você. Compartilhe sua paixão e explique o que torna a Fórmula 1 tão especial.
+
+Apoie Iniciativas Femininas: Siga e apoie pilotos, jornalistas e influenciadoras femininas que estão fazendo a diferença na Fórmula 1. Compartilhe suas histórias e ajude a amplificar suas vozes.
+
+Participe de Comunidades Inclusivas: Envolva-se em grupos e fóruns que promovem a diversidade e a inclusão na Fórmula 1. Troque ideias e experiências com outros fãs que compartilham do mesmo objetivo.
+
+Educação e Consciência: Aprenda sobre a história e as contribuições das mulheres na Fórmula 1. Conhecimento é poder, e saber mais sobre o papel das mulheres no esporte ajuda a derrubar preconceitos e estereótipos.
+
+A Fórmula 1 tem o potencial de ser um esporte verdadeiramente inclusivo e diverso. Com o esforço de todos nós, podemos transformar essa visão em realidade. Vamos juntos acelerar rumo a um futuro onde mais mulheres se sintam inspiradas e bem-vindas a fazer parte desse mundo emocionante.
+
+Afinal, a paixão pelo automobilismo não tem gênero – é um amor que todos podemos compartilhar. Vamos trazer mais mulheres para a Fórmula 1 e fazer deste esporte um espaço ainda mais vibrante e acolhedor para todos!
+
+Nos vemos na próxima corrida!
+
+Com carinho.</h3>
+    <div class="container">    
+    <canvas class="grafico2" id="GraficoBarra"></canvas>
+</div>
+            </div>
+
+        </div>
+
+
+        
+        
+       
+        
+        
 </body>
 
 </html>
 
 
 <script>
-    // Dados do Quiz (Perguntas, Opções e Respostas)
-var dadosQuiz = [
-    {
-        pergunta: "Quem é considerado o rei do automobilismo?",
-        opcoes: ["Ayrton Senna", "Lewis Hamilton", "Nelson Piquet", "Sebastian Vettel"],
-        resposta: "Ayrton Senna"
-    },
-    {
-        pergunta: "Em que ano Max Verstappen estreou na Fórmula 1?",
-        opcoes: ["2015", "2016", "2017", "2018"],
-        resposta: "2015"
-    },
-    {
-        pergunta: "Quantos títulos tem o maior vencedor da história da F1??",
-        opcoes: ["7 títulos", "5 títulos", "10 títulos", "9 títulos"],
-        resposta: "7 títulos"
-    },
-    {
-        pergunta: "Quem é o piloto com mais vitórias em uma única temporada na Fórmula 1?",
-        opcoes: ["Max Versapen", "Airton Senna", "Shumacher", "hamilton"],
-        resposta: "Max Versapen"
-    },
-    {
-        pergunta: "Quem ganhou o campeonato mundial de 1992?",
-        opcoes: ["Airton Senna", "Michael Schumacher", "alain prost", "nigel mansell"],
-        resposta: "nigel mansell"
-    },
-    {
-        pergunta: "Qual eram os pilotos da Ferrari em 2018?",
-        opcoes: ["Leclerc / Raikkonen", "Leclerc / Alonso", "Vettel / Raikkonen", "Leclerb / Vettel"],
-        resposta: "Vettel / Raikkonen"
-    },
-    {
-        pergunta: "Quem ganhou o primeiro campeonato mundial de Fórmula 1 (1950)??",
-        opcoes: ["Nino Farina", "Alberto Ascari", "Mike Hawthorn", "Juan Manuel Fangio"],
-        resposta: "Nino Farina"
-    },
-    {
-        pergunta: "Em que ano Lewis Hamilton estreou na Fórmula 1?",
-        opcoes: ["2007", "2005", "2008", "2006"],
-        resposta: "2007"
-    },
-    {
-        pergunta: "Lewis é:",
-        opcoes: ["Britanico", "Canadense", "Estadunidense", "Italiano"],
-        resposta: "Britanico"
-    },
-    {
-        pergunta: "Qual é o piloto brasileiro que perdeu o título para Lewis Hamilton, na última volta, do GP do Brasil de 2008??",
-        opcoes: ["Felipe Massa", "Nelson Piquet", "Ayrton Senna", "José Carlos Pace"],
-        resposta: "Felipe Massa"
-    },// Adicione mais perguntas conforme necessário
-];
+    
+    
+            fetch("/usuarios/generopublico", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+                resposta.json().then((data) => {
+                    console.log("data: ", data);
+    
+                    const generousuarios = { masculino: 0, feminino: 0, outros: 0 };
+    
+                    for (var i = 0; i < data.length; i++) {
+                        var genero = data[i].genero;
+                        if (genero === "masculino") {
+                            generousuarios.masculino++;
+                        } else if (genero === "feminino") {
+                            generousuarios.feminino++;
+                        } else {
+                            generousuarios.outros++;
+                        }
+                    }
+    
+                    var dadosporcentagemGenero = [
+                        ((generousuarios.masculino / data.length) * 100).toFixed(2),
+                        ((generousuarios.feminino / data.length) * 100).toFixed(2),
+                        ((generousuarios.outros / data.length) * 100).toFixed(2)
+                    ];
+    
+                    var grafico2 = document.getElementById('GraficoBarra');
+                    var barChart = new Chart(grafico2, {
+                        type: 'pie',
+                        data: {
+                            labels: ['Masculino', 'Feminino', 'Outros'],
+                            datasets: [{
+                                label: 'Porcentagem de Gênero',
+                                data: dadosporcentagemGenero,
+                                borderColor: ["#000"],
+                                backgroundColor: ["#36A2EB", "#FF6384", "#FFCE56"],
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                });
+            })
+    
+           
+    </script>
+    
+    
 
-var perguntaAtual = 0; // Índice da pergunta atual
-var pontuacao = 0; // Pontuação inicial do quiz
-
-// Função para carregar a próxima pergunta
-    function carregarPergunta() {
-        var Pergunta = document.getElementById('texto-pergunta');
-        var opcoes = document.getElementById('container-opcoes');
-        var dadosPerguntaAtual = dadosQuiz[perguntaAtual];
-
-        // Exibe a pergunta atual
-        Pergunta.innerHTML = dadosPerguntaAtual.pergunta;
-        opcoes.innerHTML = ''; // Limpa as opções
-
-        // Adiciona botões para cada opção de resposta
-        dadosPerguntaAtual.opcoes.forEach(opcao => {
-            var botao = document.createElement('button');
-            botao.textContent = opcao;
-            botao.classList.add('opcao-btn');
-            botao.addEventListener('click', () => verificarResposta(opcao));
-            opcoes.appendChild(botao);
-        });
-
-        // Desabilita o botão "Próxima Pergunta" até que uma resposta seja selecionada
-        document.getElementById('btn-proxima').disabled = true;
-    }
-
-    // Função para verificar a resposta selecionada pelo usuário
-    function verificarResposta(respostaUsuario) {
-        var dadosPerguntaAtual = dadosQuiz[perguntaAtual];
-        var elementoTextoFeedback = document.getElementById('texto-feedback');
-
-        // Verifica se a resposta selecionada está correta
-        if (respostaUsuario === dadosPerguntaAtual.resposta) {
-            pontuacao++; // Incrementa a pontuação se a resposta estiver correta
-            elementoTextoFeedback.innerHTML = "Resposta correta!";
-            elementoTextoFeedback.style.color = "green";
-        } else {
-            elementoTextoFeedback.innerHTML = "Resposta incorreta.";
-            elementoTextoFeedback.style.color = "red";
-        }
-
-        // Habilita o botão "Próxima Pergunta" após responder
-        document.getElementById('btn-proxima').disabled = false;
-
-        // Desabilita todos os botões de opção após responder
-        var botoesOpcao = document.querySelectorAll('.opcao-btn');
-        botoesOpcao.forEach(botao => {
-            botao.disabled = true;
-        });
-    }
-
-    // Função para avançar para a próxima pergunta
-    function proximaPergunta() {
-        perguntaAtual++; // Avança para a próxima pergunta
-
-        // Verifica se há mais perguntas restantes
-        if (perguntaAtual < dadosQuiz.length) {
-            carregarPergunta(); // Carrega a próxima pergunta
-        } else {
-            // Exibe a pontuação final quando todas as perguntas forem respondidas
-            var Pergunta = document.getElementById('texto-pergunta');
-            Pergunta.innerHTML = `Você acertou ${pontuacao} de ${dadosQuiz.length} perguntas.`;
-
-            // Limpa as opções e o feedback
-            document.getElementById('container-opcoes').innerHTML = '';
-            document.getElementById('texto-feedback').innerHTML = '';
-
-            // Esconde o botão "Próxima Pergunta" no final do quiz
-            document.getElementById('btn-proxima').style.display = 'none';
-        }
-    }
-
-    // Carrega a primeira pergunta ao carregar a página
-    carregarPergunta();
-
-
-
-    for(var i = 0; i < perguntas.length; i++){
-
-        dadosQuiz[i].pergunta = perguntas[i].pergunta;// Quem é o piloto com mais vitórias em uma única temporada na Fórmula 1?
-        dadosQuiz[i].resposta = perguntas[i].resposta;
-    }
-</script>
 
